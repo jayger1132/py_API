@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import numpy as np
-from sql import * 
+from sql import *
 # 開發搜尋場站API
 # 查詢全部場站資訊API
 app = Flask(__name__)
@@ -50,6 +50,31 @@ def GET_All_json():
 #     return name
 
 
+@app.route('/snaSearch', methods=['POST'])
+def POST_sna():
+    input = str(request.get_data(), 'utf-8')
+    with requests.get('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json') as response:
+        Ubike_Resource = response.json()
+        Ubike_Resource = Ubike_Resource['retVal']
+    input = str(input).split(' ')
+    sna_arrs = []
+    Result = ''
+    for Resource_id in Ubike_Resource:
+        for temp in input:
+            if temp in Ubike_Resource[Resource_id]['sna']:
+                # 如果已經被記錄過，則略過。
+                if str(Ubike_Resource[Resource_id]['sna']) in sna_arrs:
+                    None
+                else:
+                    sna_arrs.append(str(Ubike_Resource[Resource_id]['sna']))
+                    Result += ('場站: '+str(Ubike_Resource[Resource_id]['sna']) +
+                               ' 場站總停車格: '+str(Ubike_Resource[Resource_id]['tot']) +
+                               ' 場站目前車輛數量: '+str(Ubike_Resource[Resource_id]['sbi']) +
+                               ' 空位數量: '+str(Ubike_Resource[Resource_id]['bemp']) +
+                               ' 場站來源資料更新時間: '+str(Ubike_Resource[Resource_id]['mday'])+'\n')
+    return Result, 200
+
+
 @app.route('/snaSearch/json', methods=['POST'])
 def POST_sna_json():
     input = str(request.get_data(), 'utf-8')
@@ -81,32 +106,5 @@ def POST_sna_json():
     return {'result': sna_Dict}, 200
 
 
-@app.route('/snaSearch', methods=['POST'])
-def POST_sna():
-    input = str(request.get_data(), 'utf-8')
-    with requests.get('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json') as response:
-        Ubike_Resource = response.json()
-        Ubike_Resource = Ubike_Resource['retVal']
-    input = str(input).split(' ')
-    sna_arrs = []
-    Result = ''
-    for Resource_id in Ubike_Resource:
-        for temp in input:
-            if temp in Ubike_Resource[Resource_id]['sna']:
-                # 如果已經被記錄過，則略過。
-                if str(Ubike_Resource[Resource_id]['sna']) in sna_arrs:
-                    None
-                else:
-                    sna_arrs.append(str(Ubike_Resource[Resource_id]['sna']))
-                    Result += ('場站: '+str(Ubike_Resource[Resource_id]['sna']) +
-                               ' 場站總停車格: '+str(Ubike_Resource[Resource_id]['tot']) +
-                               ' 場站目前車輛數量: '+str(Ubike_Resource[Resource_id]['sbi']) +
-                               ' 空位數量: '+str(Ubike_Resource[Resource_id]['bemp']) +
-                               ' 場站來源資料更新時間: '+str(Ubike_Resource[Resource_id]['mday'])+'\n')
-    return Result, 200
-
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
-
-    

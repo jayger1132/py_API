@@ -11,3 +11,8 @@ for Resource_id in Ubike_Resource:
         Dict[count]['場站來源資料更新時間'] = str(Ubike_Resource[Resource_id]['mday'])
         count += 1
 ```
+
+### allInfo GET : 取得全部場站資料
+### allInfo/json GET : 取得全部場站資料JSON
+### snaSearch POST : BODY key in 搜尋的場站，取得場站資料
+### snaSearch/json POST : BODY key in 搜尋的場站，取得場站資料JSON

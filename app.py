@@ -11,18 +11,21 @@ CORS(app)
 
 @app.route("/allInfo", methods=['GET'])
 def GET_All():
+    #取得IP
+    ip = request.remote_addr
     with requests.get("https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json") as response:
         Ubike_Resource = response.json()
         Ubike_Resource = Ubike_Resource['retVal']
     Result = ''
     # 搜尋所有場站資料
-    print(INSERT("A"))
+
     for Resource_id in Ubike_Resource:
         Result += ('場站: '+str(Ubike_Resource[Resource_id]['sna']) +
                    ' 場站總停車格: '+str(Ubike_Resource[Resource_id]['tot']) +
                    ' 場站目前車輛數量: '+str(Ubike_Resource[Resource_id]['sbi']) +
                    ' 空位數量: '+str(Ubike_Resource[Resource_id]['bemp']) +
                    ' 場站來源資料更新時間: '+str(Ubike_Resource[Resource_id]['mday'])+'\n')
+    INSERT(ip, Result)
     return Result, 200
 
 

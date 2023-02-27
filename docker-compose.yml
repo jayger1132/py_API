@@ -1,0 +1,43 @@
+version: '2.1'
+services:
+  # 醫療數據資料庫
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    restart: always
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_PASSWORD=tokio328
+    # 檢查資料庫是否啟動正常，等待資料庫啟動後才啟動前端網頁或是MQTT寫入
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    ports:
+      - "33060:3306"
+  phpmyadmin:
+    image: 'bitnami/phpmyadmin:4'
+    restart: always
+    environment:
+      # 資料庫連線參數
+      - DATABASE_HOST=mariadb
+      - DATABASE_PORT_NUMBER=3306
+    #ports:
+    #  - '10443:443'
+    expose:
+      - '443'
+    depends_on:
+      - mariadb
+    volumes:
+      - 'phpmyadmin_data:/bitnami'
+  python:
+    image: python:3.9-slim
+    build:
+      context: .
+    #port 對應
+    ports:
+      - "8888:8888"
+    #volumes 對應
+    volumes:
+      - ./app:/app
+    # command: sh -c 'pip -r requirements.txt'
+volumes:
+  phpmyadmin_data:
+    driver: local

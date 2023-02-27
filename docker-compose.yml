@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   flask:
-    build: ./app
+    build: ./flask
     container_name: template_flask
     # restart: always
     environment:

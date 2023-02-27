@@ -1,8 +1,9 @@
+#coding:utf-8
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import numpy as np
-from sql import *
+# from sql import *
 # 開發搜尋場站API
 # 查詢全部場站資訊API
 app = Flask(__name__)
@@ -25,7 +26,7 @@ def GET_All():
                    ' 場站目前車輛數量: '+str(Ubike_Resource[Resource_id]['sbi']) +
                    ' 空位數量: '+str(Ubike_Resource[Resource_id]['bemp']) +
                    ' 場站來源資料更新時間: '+str(Ubike_Resource[Resource_id]['mday'])+'\n')
-    INSERT(ip, Result)
+    # INSERT(ip, Result)
     return Result, 200
 
 

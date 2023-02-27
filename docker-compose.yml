@@ -1,42 +1,26 @@
-version: '2.1'
+version: "3.7"
+
 services:
-  # 數據資料庫
-  mariadb:
-    image: 'bitnami/mariadb:10.3'
-    restart: always
+
+  flask:
+    build: ./app
+    container_name: template_flask
+    # restart: always
     environment:
-      - MARIADB_ROOT_USER=root
-      - MARIADB_ROOT_PASSWORD=tokio328
-    volumes:
-      - ./mariadb:/var/lib/mysql
-    ports:
-      - "33060:3306"
-  phpmyadmin:
-    image: 'bitnami/phpmyadmin:4'
-    restart: always
-    environment:
-      # 資料庫連線參數
-      - DATABASE_HOST=mariadb
-      - DATABASE_PORT_NUMBER=3306
-    #ports:
-    #  - '10443:443'
+      - APP_NAME=FlaskApp
     expose:
-      - '443'
+      - 8080
     depends_on:
-      - mariadb
+      - db
+      
+  db:
+    image: postgres
+    container_name: postgres
     volumes:
-      - 'phpmyadmin_data:/bitnami'
-  python:
-    image: python:3.9-slim
-    build:
-      context: .
-    #port 對應
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: youbike
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: tokio328
     ports:
-      - "8888:8888"
-    #volumes 對應
-    volumes:
-      - ./app:/app
-    # command: sh -c 'pip -r requirements.txt'
-volumes:
-  phpmyadmin_data:
-    driver: local
+      - 5432:5432

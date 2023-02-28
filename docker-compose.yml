@@ -12,15 +12,31 @@ services:
       - 8080
     depends_on:
       - db
-      
+
   db:
-    image: postgres
-    container_name: postgres
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: youbike
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: tokio328
+  image: mysql
+  container_name: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: tokio328
+    MYSQL_DATABASE: youbike
+    MYSQL_USER: jayger1132
+    MYSQL_PASSWORD: tokio328
+  ports:
+    - 3306:3306
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - 5432:5432
+      - 7000:7000
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    container_name: template_nginx
+    # restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - flask

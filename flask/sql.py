@@ -1,8 +1,8 @@
 import pymysql
 from datetime import datetime, timedelta
-dbhost = '100.26.18.194'
-dbport = 5432
-dbuser = 'root'
+dbhost = '52.91.118.206'
+dbport = 3306
+dbuser = 'jayger1132'
 dbpass = 'tokio328'
 dbname = 'youbike'
 try:

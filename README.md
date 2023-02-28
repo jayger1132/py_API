@@ -16,3 +16,7 @@ for Resource_id in Ubike_Resource:
 ### allInfo/json GET : 取得全部場站資料JSON
 ### snaSearch POST : BODY key in 搜尋的場站，取得場站資料
 ### snaSearch/json POST : BODY key in 搜尋的場站，取得場站資料JSON
+
+
+## 忽略警告
+#### https://bobbyhadz.com/blog/python-warning-running-pip-as-the-root-user-can-result-in-broken-permissions

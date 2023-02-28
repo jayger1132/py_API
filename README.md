@@ -1,9 +1,13 @@
 # py_API
  devolope the API for Search Ubike information
 
+# Set up Sever on AWS (EC2 type:t2.small storage 16GB) and use docker-compose deploye myslq、flask. Also install UI phpmyadmin、adminer and coding enviromen VSC. Network use nginx achieve reverse proxy
+
 ## URL:https://web.54.144.132.96.nip.io/
-### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log DB
-### https://vscode.54.144.132.96.nip.io/?folder=/home/coder VSC
+#### DB
+### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log 
+#### VSC
+### https://vscode.54.144.132.96.nip.io/?folder=/home/coder 
 
 ## Youbike API 使用方法
 ### allInfo GET : 取得全部場站資料
@@ -28,7 +32,7 @@ for Resource_id in Ubike_Resource:
         Dict[count]['場站來源資料更新時間'] = str(Ubike_Resource[Resource_id]['mday'])
         count += 1
 ```
-## 要注意 SQL格式化後 回到 py Table 命名 有大小寫區別
+## 注意 SQL格式化後 回到 py Table 命名 有大小寫區別
 ```py
 if (results[0] != 1):
     sql = "CREATE TABLE log( UUID VARCHAR(40), address VARCHAR(20), search_way VARCHAR(20), search_str VARCHAR(100), result MEDIUMTEXT, search_time DATETIME,result_json json , PRIMARY KEY(UUID) )"
@@ -41,5 +45,10 @@ if (results[0] != 1):
 
 ## 忽略pip警告 
 #### https://bobbyhadz.com/blog/python-warning-running-pip-as-the-root-user-can-result-in-broken-permissions
-## docker containers-image-volumes-networks 移除
+## docker containers-image-volumes-networks 移除。中間卡了大半時間在刪除image
 #### https://blog.clarence.tw/2019/09/10/docker-removing-containers-images-volumes-and-networks/
+
+## 參考
+#### https://github.com/hsuanchi/flask-template
+### EC2實作
+#### https://www.youtube.com/watch?v=SgSnz7kW-Ko

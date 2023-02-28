@@ -1,7 +1,7 @@
 # py_API
  devolope the API for Search Ubike information
 
-    Set up Sever on AWS (EC2 type:t2.small storage 16GB) and use docker-compose deploye myslq、flask. Also install UI phpmyadmin、adminer and coding enviromen VSC. Network use nginx achieve reverse proxy
+>Set up Sever on AWS (EC2 type:t2.small storage 16GB) and use docker-compose deploye myslq、flask. Also install UI phpmyadmin、adminer and coding enviromen VSC. Network use nginx achieve reverse proxy
 
 ## URL:https://web.54.144.132.96.nip.io/
 #### DB

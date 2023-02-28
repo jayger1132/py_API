@@ -22,12 +22,15 @@ if (results[0] != 1):
 ```
 
 ## URL:https://web.54.144.132.96.nip.io/
+### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log 查看DB
+### https://vscode.54.144.132.96.nip.io/?folder=/home/coder coding環境
+
+
 ### allInfo GET : 取得全部場站資料
 ### allInfo/json GET : 取得全部場站資料JSON
 ### snaSearch POST : BODY key in 搜尋的場站，取得場站資料
 ### snaSearch/json POST : BODY key in 搜尋的場站，取得場站資料JSON
-### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log 查看DB
-### https://vscode.54.144.132.96.nip.io/?folder=/home/coder coding環境
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 ## 忽略pip警告 
 #### https://bobbyhadz.com/blog/python-warning-running-pip-as-the-root-user-can-result-in-broken-permissions
 ## docker containers-image-volumes-networks 移除

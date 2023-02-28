@@ -1,7 +1,7 @@
 import pymysql
 import time
 import uuid
-dbhost = '54.160.106.29'
+dbhost = '54.144.132.96'
 dbport = 3306
 dbuser = 'jayger1132'
 dbpass = 'tokio328'

@@ -1,5 +1,22 @@
 # py_API
  devolope the API for Search Ubike information
+
+## URL:https://web.54.144.132.96.nip.io/
+### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log DB
+### https://vscode.54.144.132.96.nip.io/?folder=/home/coder VSC
+
+## Youbike API 使用方法
+### allInfo GET : 取得全部場站資料
+#### https://web.54.144.132.96.nip.io/allInfo
+### allInfo/json GET : 取得全部場站資料JSON
+#### https://web.54.144.132.96.nip.io/allInfo/json
+### snaSearch POST : BODY key in 搜尋的場站，取得場站資料
+#### https://web.54.144.132.96.nip.io/snaSearch
+### snaSearch/json POST : BODY key in 搜尋的場站，取得場站資料JSON
+#### https://web.54.144.132.96.nip.io/snaSearch/json
+![This is an image](https://github.com/jayger1132/py_API/blob/main/post_eg.png)
+
+
 ## 建立Dict 不用list append的方式新增資料
 ```py
 for Resource_id in Ubike_Resource:
@@ -21,16 +38,7 @@ if (results[0] != 1):
         db.rollback()
 ```
 
-## URL:https://web.54.144.132.96.nip.io/
-### https://phpmyadmin.54.144.132.96.nip.io/index.php?route=/sql&pos=0&db=youbike&table=log DB
-### https://vscode.54.144.132.96.nip.io/?folder=/home/coder VSC
 
-
-### allInfo GET : 取得全部場站資料
-### allInfo/json GET : 取得全部場站資料JSON
-### snaSearch POST : BODY key in 搜尋的場站，取得場站資料
-### snaSearch/json POST : BODY key in 搜尋的場站，取得場站資料JSON
-![This is an image](https://github.com/jayger1132/py_API/blob/main/post_eg.png)
 ## 忽略pip警告 
 #### https://bobbyhadz.com/blog/python-warning-running-pip-as-the-root-user-can-result-in-broken-permissions
 ## docker containers-image-volumes-networks 移除

@@ -22,7 +22,7 @@ except:
     db.rollback()
 
 if (results[0] != 1):
-    sql = "CREATE TABLE LOG( UUID VARCHAR(40), address VARCHAR(20), search_way VARCHAR(20), search_str VARCHAR(100), result MEDIUMTEXT, search_time DATETIME,result_json json , PRIMARY KEY(UUID) )"
+    sql = "CREATE TABLE log( UUID VARCHAR(40), address VARCHAR(20), search_way VARCHAR(20), search_str VARCHAR(100), result MEDIUMTEXT, search_time DATETIME,result_json json , PRIMARY KEY(UUID) )"
     try:
         cursor.execute(sql)
     except:

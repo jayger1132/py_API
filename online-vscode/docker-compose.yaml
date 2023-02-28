@@ -1,0 +1,34 @@
+version: "3.7"
+
+## 服務連線URL網站: xxx.52.91.118.206.nip.io
+
+services:
+  ## 我需要一個熟悉的開發環境可以開發
+  ## 我熟悉的開發環境是vscode
+  vscode:
+    build:
+      context: .
+      dockerfile: vscode/Dockerfile
+    restart: always
+    environment:
+      # 反向代理服務機制
+      - VIRTUAL_HOST=vscode.54.160.106.29.nip.io
+      - LETSENCRYPT_HOST=vscode.54.160.106.29.nip.io
+      - LETSENCRYPT_EMAIL=jayger1132@gmail.com
+      - VIRTUAL_PORT=8080
+    expose:
+      - 8080
+    volumes:
+      ## 環境使用者建置說明
+      - "./usersconfig/config.yaml:/home/coder/.config/code-server/config.yaml:rw"
+      ## 通用使用者環境建置資訊
+      - "./usersconfig/settings.json:/home/coder/.local/share/code-server/User/settings.json:rw"
+      - vscode_data:/home/coder/work
+      ## 掛載實體儲存空間(專案部屬)
+      - /home/ubuntu/prod-py-api:/home/coder/prod-py-api:rw
+      ## 掛載Docker引擎運作
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+  vscode_data:
+    driver: local

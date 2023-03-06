@@ -22,5 +22,5 @@ if (results[0] != 1):
 
 ## 忽略pip警告 
 #### https://bobbyhadz.com/blog/python-warning-running-pip-as-the-root-user-can-result-in-broken-permissions
-## docker containers-image-volumes-networks 移除。中間卡了大半時間在刪除image
+## docker containers-image-volumes-networks 移除。中間卡了大半時間在刪除image。docker-compose up -d --build
 #### https://blog.clarence.tw/2019/09/10/docker-removing-containers-images-volumes-and-networks/

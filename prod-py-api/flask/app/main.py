@@ -14,7 +14,8 @@ CORS(app)
 @app.route("/allInfo", methods=['GET'])
 def GET_All():
     # 取得IP
-    ip = request.remote_addr
+    # ip = request.remote_addr
+    ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     with requests.get("https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json") as response:
         Ubike_Resource = response.json()
         Ubike_Resource = Ubike_Resource['retVal']
